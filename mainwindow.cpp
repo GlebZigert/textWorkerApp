@@ -59,6 +59,8 @@ void MainWindow::on_pushButton_clicked()
 
     data = file.readAll(); //считываем все данные с файла в объект data
 
+    qDebug()<<"Data: "<<(QString)data;
+
     file.close();
 
 
