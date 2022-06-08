@@ -45,12 +45,38 @@ QString simbolCount::work_with(QByteArray *data)
         if(((int)(data->at(i))==32)||((int)(data->at(i))==10)){
 
             qDebug()<<current;
+            list.append(current);
             current="";
         //    qDebug()<<"новое слово:";
         }else{
             current+=data->at(i);
 
         }
+    }
+
+    QMap<int,int> simbolCount;
+
+    foreach(auto one, list){
+
+        int len = one.length();
+
+
+        if(simbolCount.contains(len)){
+
+            int val=simbolCount.value(len)+1;
+            simbolCount.remove(len);
+            simbolCount.insert(len,val);
+
+            continue;
+        }else{
+            simbolCount.insert(len,1);
+        }
+
+    }
+
+    foreach(auto one, simbolCount.keys()){
+
+        qDebug()<<"len: "<<one<<"  count: "<<simbolCount.value(one);
     }
 
    return  "simbolCount";
