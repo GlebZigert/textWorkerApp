@@ -47,9 +47,25 @@ void MainWindow::on_pushButton_clicked()
     list.append(new simbolCount());
     list.append(new wordLength());
 
+    QFile file(fileName); // создаем объект класса QFile
+
+    QByteArray data; // Создаем объект класса QByteArray, куда мы будем считывать данные
+
+    if (!file.open(QIODevice::ReadOnly)){ // Проверяем, возможно ли открыть наш файл для чтения
+        qDebug()<<"file not open";
+        // если это сделать невозможно, то завершаем функцию
+        return;
+    }
+
+    data = file.readAll(); //считываем все данные с файла в объект data
+
+    file.close();
+
+
+
     foreach(auto algo, list){
 
-        res+=algo->work_with(fileName);
+        res+=algo->work_with(&data);
     }
 
 

@@ -8,22 +8,11 @@ Algoritm::Algoritm(QObject *parent) : QObject(parent)
 
 }
 
-QString Algoritm::work_with(QString filename)
+QString Algoritm::work_with(QByteArray *data)
 {
 
 
-    QFile file(filename); // создаем объект класса QFile
-
-    QByteArray data; // Создаем объект класса QByteArray, куда мы будем считывать данные
-
-    if (!file.open(QIODevice::ReadOnly)){ // Проверяем, возможно ли открыть наш файл для чтения
-        qDebug()<<"file not open";
-        return ""; // если это сделать невозможно, то завершаем функцию
-    }
-
-    data = file.readAll(); //считываем все данные с файла в объект data
-
-    qDebug() <<"Data: \n"<< QString(data); // Выводим данные в консоль, предварительно создав строку из полученных данных
+        qDebug() <<"Data: \n"<< data; // Выводим данные в консоль, предварительно создав строку из полученных данных
 
 
 
@@ -37,8 +26,9 @@ simbolCount::simbolCount(QObject *parent)
 
 }
 
-QString simbolCount::work_with(QString filename)
+QString simbolCount::work_with(QByteArray *data)
 {
+
    return  "simbolCount";
 }
 
@@ -47,7 +37,7 @@ wordLength::wordLength(QObject *parent)
 
 }
 
-QString wordLength::work_with(QString filename)
+QString wordLength::work_with(QByteArray *data)
 {
      return  "wordLength";
 }

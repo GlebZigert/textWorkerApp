@@ -10,7 +10,7 @@ class Algoritm : public QObject
 public:
     explicit Algoritm(QObject *parent = nullptr);
 
-    virtual QString work_with(QString filename);
+    virtual QString work_with(QByteArray *data);
 
 signals:
 
@@ -22,7 +22,7 @@ class simbolCount : public Algoritm
 public:
     explicit simbolCount(QObject *parent = nullptr);
 
-    virtual QString work_with(QString filename);
+    virtual QString work_with(QByteArray *data);
 
 signals:
 
@@ -34,7 +34,8 @@ class wordLength : public Algoritm
 public:
     explicit wordLength(QObject *parent = nullptr);
 
-    virtual QString work_with(QString filename);
+    virtual QString work_with(QByteArray *data);
+
 
 signals:
 
